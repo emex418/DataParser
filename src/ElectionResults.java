@@ -98,4 +98,18 @@ public class ElectionResults {
         this.combindedFips = combindedFips;
     }
 
+    public String toString() {
+        return "ElectionResults{" +
+                "demVotes=" + demVotes +
+                ", gopVotes=" + gopVotes +
+                ", totalVotes=" + totalVotes +
+                ", votesDifference=" + votesDifference +
+                ", percentDem=" + percentDem +
+                ", percentGOP=" + percentGOP +
+                ", percentDifference=" + percentDifference +
+                ", state='" + state + '\'' +
+                ", county='" + county + '\'' +
+                ", combindedFips=" + combindedFips +
+                '}';
+    }
 }
