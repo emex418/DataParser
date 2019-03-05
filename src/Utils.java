@@ -23,7 +23,7 @@ public class Utils {
     public static ArrayList<ElectionResults> parse2016ElectionResults(String data) {
         ArrayList<ElectionResults> electionResults = new ArrayList<>();
         String[] lines = data.split("\n");
-        for (int i =  1; i < lines.length; i++) {
+        for (int i = 1; i < lines.length; i++) {
             ElectionResults temp = parseLine(lines[i]);
             electionResults.add(temp);
         }
@@ -31,20 +31,37 @@ public class Utils {
     }
 
     private static ElectionResults parseLine(String line) {
-        //TODO: change from a brute force solution to a simpler solution - loop solution
-        ElectionResults electionResults = new ElectionResults(0, 0, 0, 0, 0, 0, 0, "", "", 0);
-        String[] columns = line.split(",");
-//        electionResults.setDemVotes((int)Double.parseDouble(columns[1]));
-//        electionResults.setGopVotes((int)Double.parseDouble(columns[2]));
-//        electionResults.setTotalVotes((int)Double.parseDouble(columns[3]));
-//        electionResults.setPercentDem(Double.parseDouble(columns[4]));
-//        electionResults.setPercentGOP(Double.parseDouble(columns[5]));
-//        int votesDifference = (int)Double.parseDouble(columns[6].substring(1) + columns[7].substring(0,columns[7].length()-1));
-//        electionResults.setVotesDifference(votesDifference);
-//        electionResults.setPercentDifference(Double.parseDouble(columns[8].substring(0, columns[8].length()-1)));
-//        electionResults.setState(columns[9]);
-//        electionResults.setCounty(columns[10]);
-//        electionResults.setCombindedFips(Integer.parseInt(columns[11]));
-        return electionResults;
+        line = line.replaceAll("\"", "");
+        line = line.replace("%", "");
+        String[] dataArray = line.split(",");
+        return setElectionResults(dataArray);
+    }
+
+    private static ElectionResults setElectionResults(String dataArray[]) {
+        int index = 0;
+        int demVotes = (int) Double.parseDouble(dataArray[index + 1]);
+        int gopVotes = (int) Double.parseDouble(dataArray[index + 2]);
+        int totalVotes = (int) Double.parseDouble(dataArray[index + 3]);
+        double percentDem = Double.parseDouble(dataArray[index + 4]);
+        double percentGOP = Double.parseDouble(dataArray[index + 5]);
+        index = fixDataIrregularities(dataArray);
+        int votesDifference = (int) Double.parseDouble(dataArray[index + 6]);
+        double percentDifference = Double.parseDouble(dataArray[index + 7]);
+        String state = dataArray[index + 8];
+        String county = dataArray[index + 9];
+        int combinedFips = (int) Double.parseDouble(dataArray[index + 10]);
+        return new ElectionResults(demVotes, gopVotes, totalVotes, percentDem, percentGOP, votesDifference, percentDifference, state, county, combinedFips);
+    }
+
+    private static int fixDataIrregularities(String[] dataArray) {
+        int index = 0;
+        if (dataArray.length >= 12) {
+            int difference = dataArray.length - 11;
+            for (int i = 0; i < difference; i++) {
+                dataArray[6 + difference] = dataArray[6] + dataArray[6 + i];
+            }
+            index = difference;
+        }
+        return index;
     }
 }

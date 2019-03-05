@@ -98,6 +98,7 @@ public class ElectionResults {
         this.combindedFips = combindedFips;
     }
 
+    @Override
     public String toString() {
         return "ElectionResults{" +
                 "demVotes=" + demVotes +
