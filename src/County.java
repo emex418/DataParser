@@ -34,7 +34,6 @@ public class County {
 
     private ElectionData parseElectionData(String file) {
         String[] countyData = getCountyData(file);
-
         int demVotes = Integer.parseInt(countyData[0]);
         int GOPVotes = Integer.parseInt(countyData[1]);
         int totalVotes = Integer.parseInt(countyData[2]);
@@ -44,8 +43,7 @@ public class County {
     private String[] getCountyData(String file) {
         String[] lines = file.split("\n");
         for (int i = 0; i < lines.length; i++) {
-            if (lines[i].indexOf(fips) != -1 && lines[i].indexOf(name) != -1) return lines[i].split(",");
-            ;
+            if (lines[i].contains(Integer.toString(fips)) && lines[i].contains(name)) return lines[i].split(",");
         }
 
         System.out.println("No data for county " + name + " in " + file);
