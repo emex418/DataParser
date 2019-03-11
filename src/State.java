@@ -13,8 +13,8 @@ public class State {
         ArrayList<County> counties = new ArrayList<>();
         String[] dataLines = file.split("\n");
         for (int i = 0; i < dataLines.length; i++) {
-            String[] variables = dataLines[i].split(",");
-            County c = new County(variables[variables.length-2], name);
+            String[] vars = dataLines[i].split(",");
+            County c = new County(vars[vars.length-2], name, Integer.parseInt(vars[vars.length-1]));
             counties.add(c);
         }
         return counties;

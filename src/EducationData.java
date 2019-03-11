@@ -1,7 +1,7 @@
-public class EducationalAttainment {
+public class EducationData {
     double noHS, onlyHS, someCollege, bachelorsOrHigher;
 
-    public EducationalAttainment(double noHS, double onlyHS, double someCollege, double bachelorsOrHigher){
+    public EducationData(double noHS, double onlyHS, double someCollege, double bachelorsOrHigher){
         this.noHS = noHS;
         this.onlyHS = onlyHS;
         this.someCollege = someCollege;
@@ -42,7 +42,7 @@ public class EducationalAttainment {
 
     @Override
     public String  toString() {
-        return "EducationalAttainment{" +
+        return "EducationData{" +
                 "noHS=" + noHS +
                 ", onlyHS=" + onlyHS +
                 ", someCollege=" + someCollege +

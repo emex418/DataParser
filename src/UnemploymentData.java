@@ -1,7 +1,7 @@
-public class Unemployent {
+public class UnemploymentData {
     int laborForceSize, employed, unemployed;
     double unemploymentRate;
-    public Unemployent(int laborForceSize, int employed, int unemployed, double unemploymentRate){
+    public UnemploymentData(int laborForceSize, int employed, int unemployed, double unemploymentRate){
         this.employed = employed;
         this.laborForceSize = laborForceSize;
         this.unemployed = unemployed;
@@ -42,7 +42,7 @@ public class Unemployent {
 
     @Override
     public String toString() {
-        return "Unemployent{" +
+        return "UnemploymentData{" +
                 "laborForceSize=" + laborForceSize +
                 ", employed=" + employed +
                 ", unemployed=" + unemployed +
